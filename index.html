@@ -8,7 +8,7 @@
 </head>
 
 <body>
-  <!-- <script src="./app.js"></script> -->
+  <script src="./app.js"></script>
   <!-- <script src="./01_variable.js"></script> -->
   <!-- <script src="./02_operator.js"></script> -->
   <!-- <script src="./03_condition.js"></script> -->
@@ -17,13 +17,30 @@
   <!-- <script src="./06_object.js"></script> -->
   <!-- <script src="./07_class.js"></script> -->
   <!-- <script src="./08_array.js"></script> -->
-  <script src="./09_array_api.js"></script>
+  <!-- <script src="./09_array_api.js"></script> -->
 
 
 
   <h1>Hello Javascript</h1>
+  <button onclick="alert('hello')">Click</button>
 
+  <button onclick="sum('안녕하세요')">Click</button>
+  <script>
+    function sum(n) {
+      alert(n)
+    }
+  </script>
 
+  <button id="bt">클릭</button>
+  <script>
+    window.onload = function () {
+      var bt = document.getElementById('bt')
+      bt.onclick = function () {
+        alert('버튼이 클릭되었습니다.')
+        console.log('ok')
+      }
+    }
+  </script>
 
 </body>
 

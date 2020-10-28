@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Js</title>
+</head>
+
+<body>
+  <button id="btn1">클릭</button>
+
+  <script>
+    let btn1 = document.getElementById('btn1')
+
+    btn1.addEventListener('click', function () {
+      alert('실행됩니다.')
+      console.log('hahaha')
+    })
+  </script>
+
+  <!--  -->
+
+  <button id="btn2">클릭</button>
+
+  <script>
+    function win1() {
+      console.log('Ok-1')
+    }
+
+    function win2() {
+      console.log('Ok-2')
+    }
+
+    addEventListener('load', win1)
+    addEventListener('load', win2)
+  </script>
+
+  <!--  -->
+
+  <button id="btn3">클릭</button>
+
+  <script>
+    const btn3 = document.querySelector('#btn3')
+
+    btn3.addEventListener('click', function (e) {
+      console.log(e)
+    })
+  </script>
+
+  <!--  -->
+
+  <button id="btn4">클릭</button>
+
+  <script>
+    const btn = document.querySelector('#btn4')
+    var i = 0
+
+    var timer = setInterval(function () {
+      i++
+      console.log(i)
+    }, 1000)
+
+    btn.addEventListener('click', function () {
+      clearInterval(timer)
+    })
+  </script>
+
+
+
+</body>
+
+</html>
