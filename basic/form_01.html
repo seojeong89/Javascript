@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>form</title>
+</head>
+
+<body>
+  <form action="form">
+    <input class="input" type="text" placeholder="검색어 입력">
+    <input class="btn" type="submit" value="확인">
+  </form>
+
+  <script>
+    const btn = document.querySelector('.btn')
+
+    btn.addEventListener('click', function (e) {
+      e.preventDefault()
+      console.log('btn clicked')
+    })
+  </script>
+
+</body>
+
+</html>

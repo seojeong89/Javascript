@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>form</title>
+</head>
+
+<body>
+  <form class="form">
+    <input type="text" placeholder="검색어 입력">
+
+  </form>
+
+  <h2 class="word"></h2>
+
+  <script>
+    const form = document.querySelector('.form')
+    const input = form.querySelector('input')
+    const word = document.querySelector('.word')
+
+
+    function handlesubmit(e) {
+      e.preventDefault()
+      word.textContent = input.value
+      input.value = ''
+    }
+
+    function init() {
+      form.addEventListener('sibmit', handlesubmit)
+    }
+
+    init()
+
+  </script>
+
+</body>
+
+</html>
