@@ -48,7 +48,7 @@ form input {
 
 .food_list {
   display: grid;
-  grid-template-columns:repeat(auto-fit, minmax(300px, auto));
+  grid-template-columns: repeat(auto-fit, minmax(300px, auto));
   gap: 30px;
 }
 
@@ -60,7 +60,6 @@ form input {
   display: flex;
   align-items: start;
   margin-bottom: 12px;
-
 }
 
 .food_info .food__title h3 {
@@ -80,5 +79,3 @@ form input {
   text-align: center;
   font: 24px;
 }
-
-

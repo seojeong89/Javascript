@@ -12,7 +12,7 @@
 .left {
   flex-basis: 460px;
   height: 100%;
-  background:rosybrown;
+  background: rosybrown;
   padding: 40px;
   color: #f5fff7;
 }
@@ -89,7 +89,6 @@
   resize: vertical;
 }
 
-
 .btn {
   background: rosybrown;
   color: #fff;
@@ -152,5 +151,5 @@
 }
 
 .modal p {
-  padding:  20px;
+  padding: 20px;
 }

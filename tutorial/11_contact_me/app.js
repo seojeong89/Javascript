@@ -1,6 +1,6 @@
-const dimm = document.querySelector('.dimm')
-const modal = document.querySelector('.modal')
-const close = document.querySelector('.close')
+const dimm = document.querySelector(".dimm");
+const modal = document.querySelector(".modal");
+const close = document.querySelector(".close");
 
 function sendmail() {
   // get all data in form and return object
@@ -15,15 +15,16 @@ function sendmail() {
           return false;
         }
         return true;
-      }).
-      map(function (k) {
+      })
+      .map(function (k) {
         if (elements[k].name !== undefined) {
           return elements[k].name;
           // special case for Edge's html collection
         } else if (elements[k].length > 0) {
           return elements[k].item(0).name;
         }
-      }).filter(function (item, pos, self) {
+      })
+      .filter(function (item, pos, self) {
         return self.indexOf(item) == pos && item;
       });
 
@@ -43,30 +44,30 @@ function sendmail() {
             data.push(item.value);
           }
         }
-        formData[name] = data.join(', ');
+        formData[name] = data.join(", ");
       }
     });
 
     // add form-specific values into the data
     formData.formDataNameOrder = JSON.stringify(fields);
-    formData.formGoogleSheetName = form.dataset.sheet || 'responses'; // default sheet name
-    formData.formGoogleSendEmail
-      = form.dataset.email || ''; // no email by default
+    formData.formGoogleSheetName = form.dataset.sheet || "responses"; // default sheet name
+    formData.formGoogleSendEmail = form.dataset.email || ""; // no email by default
 
     return { data: formData, honeypot: honeypot };
   }
 
-  function handleFormSubmit(event) {  // handles form submit without any jquery
-    event.preventDefault();           // we are submitting via xhr below
+  function handleFormSubmit(event) {
+    // handles form submit without any jquery
+    event.preventDefault(); // we are submitting via xhr below
     var form = event.target;
     var formData = getFormData(form);
     var data = formData.data;
 
-    if (data.name === '' || data.message === '') {
-      alert('이름과 이메일, 내용을 확인하세요!')
-      return
+    if (data.name === "" || data.message === "") {
+      alert("이름과 이메일, 내용을 확인하세요!");
+      return;
     } else {
-      dimm.classList.add('active')
+      dimm.classList.add("active");
     }
 
     // If a honeypot field is filled, assume it was done so by a spam bot.
@@ -77,7 +78,7 @@ function sendmail() {
     disableAllButtons(form);
     var url = form.action;
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', url);
+    xhr.open("POST", url);
     // xhr.withCredentials = true;
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function () {
@@ -85,19 +86,21 @@ function sendmail() {
         form.reset();
 
         // 성공후 동작
-        modal.classList.add('active')
+        modal.classList.add("active");
 
-        close.addEventListener('click', () => {
-          dimm.classList.remove('active')
-          modal.classList.remove('active')
-          location.reload()
-        })
+        close.addEventListener("click", () => {
+          dimm.classList.remove("active");
+          modal.classList.remove("active");
+          location.reload();
+        });
       }
     };
     // url encode form data for sending as post data
-    var encoded = Object.keys(data).map(function (k) {
-      return encodeURIComponent(k) + "=" + encodeURIComponent(data[k]);
-    }).join('&');
+    var encoded = Object.keys(data)
+      .map(function (k) {
+        return encodeURIComponent(k) + "=" + encodeURIComponent(data[k]);
+      })
+      .join("&");
     xhr.send(encoded);
   }
 
@@ -107,7 +110,7 @@ function sendmail() {
     for (var i = 0; i < forms.length; i++) {
       forms[i].addEventListener("submit", handleFormSubmit, false);
     }
-  };
+  }
   document.addEventListener("DOMContentLoaded", loaded, false);
 
   function disableAllButtons(form) {
@@ -118,4 +121,4 @@ function sendmail() {
   }
 }
 
-sendmail()
+sendmail();
