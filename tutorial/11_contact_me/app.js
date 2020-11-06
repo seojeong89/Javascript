@@ -1,25 +1,31 @@
+const dimm = document.querySelector('.dimm')
+const modal = document.querySelector('.modal')
+const close = document.querySelector('.close')
+
 function sendmail() {
   // get all data in form and return object
   function getFormData(form) {
     var elements = form.elements;
     var honeypot;
 
-    var fields = Object.keys(elements).filter(function (k) {
-      if (elements[k].name === "honeypot") {
-        honeypot = elements[k].value;
-        return false;
-      }
-      return true;
-    }).map(function (k) {
-      if (elements[k].name !== undefined) {
-        return elements[k].name;
-        // special case for Edge's html collection
-      } else if (elements[k].length > 0) {
-        return elements[k].item(0).name;
-      }
-    }).filter(function (item, pos, self) {
-      return self.indexOf(item) == pos && item;
-    });
+    var fields = Object.keys(elements)
+      .filter(function (k) {
+        if (elements[k].name === "honeypot") {
+          honeypot = elements[k].value;
+          return false;
+        }
+        return true;
+      }).
+      map(function (k) {
+        if (elements[k].name !== undefined) {
+          return elements[k].name;
+          // special case for Edge's html collection
+        } else if (elements[k].length > 0) {
+          return elements[k].item(0).name;
+        }
+      }).filter(function (item, pos, self) {
+        return self.indexOf(item) == pos && item;
+      });
 
     var formData = {};
     fields.forEach(function (name) {
@@ -43,9 +49,9 @@ function sendmail() {
 
     // add form-specific values into the data
     formData.formDataNameOrder = JSON.stringify(fields);
-    formData.formGoogleSheetName = form.dataset.sheet || "responses"; // default sheet name
+    formData.formGoogleSheetName = form.dataset.sheet || 'responses'; // default sheet name
     formData.formGoogleSendEmail
-      = form.dataset.email || ""; // no email by default
+      = form.dataset.email || ''; // no email by default
 
     return { data: formData, honeypot: honeypot };
   }
@@ -59,6 +65,8 @@ function sendmail() {
     if (data.name === '' || data.message === '') {
       alert('이름과 이메일, 내용을 확인하세요!')
       return
+    } else {
+      dimm.classList.add('active')
     }
 
     // If a honeypot field is filled, assume it was done so by a spam bot.
@@ -75,14 +83,14 @@ function sendmail() {
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4 && xhr.status === 200) {
         form.reset();
+
         // 성공후 동작
+        modal.classList.add('active')
 
-        const container = document.querySelector('.container')
-        container.classList.add('active')
-
-        const close = document.querySelector('.close')
         close.addEventListener('click', () => {
-          container.classList.remove('active')
+          dimm.classList.remove('active')
+          modal.classList.remove('active')
+          location.reload()
         })
       }
     };
